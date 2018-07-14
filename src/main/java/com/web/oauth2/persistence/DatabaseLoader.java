@@ -18,10 +18,12 @@ public class DatabaseLoader {
 
 	@PostConstruct
 	public void init() {
-		User user = new User();
-		user.setUserName("admin");
-		user.setPassword("admin");
-		user.setRoles(Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
-		repository.save(user);
+		if (repository.findByUserName("admin") == null) {
+			User user = new User();
+			user.setUserName("admin");
+			user.setPassword("admin");
+			user.setRoles(Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+			repository.save(user);
+		}
 	}
 }
