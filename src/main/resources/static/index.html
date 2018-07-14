@@ -10,37 +10,97 @@
 <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+<style>
+.card-custom:hover {
+	background-color: #a5adb0;
+}
+
+.logo {
+	width: 200px;
+	height: 200px;
+}
+
+.delimiter {
+	min-height: 44px;
+}
+</style>
+
 </head>
 <body ng-app="app" ng-controller="home as home">
-	<h1>Login</h1>
+	<div class="row delimiter"></div>
+	<div class="container">
+		<h1>Login</h1>
+	</div>
 	<div class="container" ng-show="!home.authenticated">
-		<div>
-			With Facebook:
-			<a href="/login/facebook">click here</a>
-		</div>
-		<div>
-			With Github:
-			<a href="/login/github">click here</a>
-		</div>
-		<div>
-			With internal data base:
-			<form action="/admin_login" name="f" method="POST">
-				<div class="group">
-					<label for="username">User name</label>
-					<input id="username" type="text" name="username" required="true" autofocus="autofocus" />
-					<span class="highlight"></span>
-					<span class="bar"></span>
+		<div class="row delimiter"></div>
+		<div class="row">
+			<!-- FACEBOOK -->
+			<div class="card card-custom col-sm-3" onclick="window.location.href='/login/facebook'">
+				<div class="card-header">Facebook</div>
+				<div class="card-body">
+					<p class="card-text">Login with facebook.</p>
+					<img class="logo" src="https://image.flaticon.com/icons/png/512/38/38442.png" />
 				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input id="passwordLogin" type="password" name="password" required="true" />
-					<span class="highlight"></span>
-					<span class="bar"></span>
+			</div>
+			<div class="col-sm-1"></div>
+
+			<!-- GITHUB -->
+			<div class="card card-custom col-sm-3" onclick="window.location.href='/login/github'">
+				<div class="card-header">GitHub</div>
+				<div class="card-body">
+					<p class="card-text">Login with github.</p>
+					<img class="logo" src="https://image.flaticon.com/icons/png/512/25/25231.png" />
 				</div>
-				<input type="submit" class="btn btn-primary" value="Log in" />
-			</form>
+			</div>
+			<div class="col-sm-1"></div>
+
+			<div class="card col-sm-3">
+				<div class="card-header">Internal login</div>
+				<div class="card-body">
+					<p class="card-text">Login with internal database.</p>
+
+					<form action="/admin_login" name="f" method="POST">
+						<div class="group">
+							<label for="username">User name</label>
+							<input id="username" type="text" name="username" required="true" autofocus="autofocus" />
+							<span class="highlight"></span>
+							<span class="bar"></span>
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input id="passwordLogin" type="password" name="password" required="true" />
+							<span class="highlight"></span>
+							<span class="bar"></span>
+						</div>
+						<input type="submit" class="btn btn-primary" value="Log in" />
+					</form>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+
+
 
 		</div>
+		<!-- 		<div> -->
+		<!-- 			With internal data base: -->
+		<!-- 			<form action="/admin_login" name="f" method="POST"> -->
+		<!-- 				<div class="group"> -->
+		<!-- 					<label for="username">User name</label> -->
+		<!-- 					<input id="username" type="text" name="username" required="true" autofocus="autofocus" /> -->
+		<!-- 					<span class="highlight"></span> -->
+		<!-- 					<span class="bar"></span> -->
+		<!-- 				</div> -->
+		<!-- 				<div class="form-group"> -->
+		<!-- 					<label for="password">Password</label> -->
+		<!-- 					<input id="passwordLogin" type="password" name="password" required="true" /> -->
+		<!-- 					<span class="highlight"></span> -->
+		<!-- 					<span class="bar"></span> -->
+		<!-- 				</div> -->
+		<!-- 				<input type="submit" class="btn btn-primary" value="Log in" /> -->
+		<!-- 			</form> -->
+
+		<!-- 		</div> -->
 	</div>
 	<div class="container" ng-show="home.authenticated">
 		Logged in as:
