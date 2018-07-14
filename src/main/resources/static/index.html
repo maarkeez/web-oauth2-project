@@ -7,24 +7,44 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width" />
 <base href="/" />
-<link rel="stylesheet" type="text/css"
-	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body ng-app="app" ng-controller="home as home">
 	<h1>Login</h1>
 	<div class="container" ng-show="!home.authenticated">
 		<div>
-			With Facebook: <a href="/login/facebook">click here</a>
+			With Facebook:
+			<a href="/login/facebook">click here</a>
 		</div>
 		<div>
-			With Github: <a href="/login/github">click here</a>
+			With Github:
+			<a href="/login/github">click here</a>
+		</div>
+		<div>
+			With internal data base:
+			<form action="/admin_login" name="f" method="POST">
+				<div class="group">
+					<input id="username" type="text" name="username" required="true" autofocus="autofocus" />
+					<span class="highlight"></span>
+					<span class="bar"></span>
+					<label>User name:</label>
+				</div>
+				<div class="group">
+					<input id="passwordLogin" type="password" name="password" required="true" />
+					<span class="highlight"></span>
+					<span class="bar"></span>
+					<label>Password</label>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Log in" />
+			</form>
+
 		</div>
 	</div>
 	<div class="container" ng-show="home.authenticated">
-		Logged in as: <span ng-bind="home.user"></span>
+		Logged in as:
+		<span ng-bind="home.user"></span>
 		<div>
 			<button ng-click="home.logout()" class="btn btn-primary">Logout</button>
 		</div>

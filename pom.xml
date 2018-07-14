@@ -42,6 +42,19 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!-- Web - templates -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
+
+
+
 		<!-- Security for Oauth2 -->
 		<dependency>
 			<groupId>org.springframework.security.oauth.boot</groupId>
@@ -97,6 +110,31 @@
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
 			<version>1.1.1</version>
+		</dependency>
+
+
+		<!-- Data base -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
+		<!-- Dependencia BBDD -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+		</dependency>
+
+		<!-- Web server -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- For test -->

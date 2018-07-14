@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class LoginController {
+public class UserController {
 
 	/**
 	 * To use the new Authorization Server for single sign on, just like the client for Facebook and Github
@@ -21,5 +21,5 @@ public class LoginController {
 		Map<String, String> map = new LinkedHashMap<>();
 		map.put("name", principal.getName());
 		return map;
-	}
+	}	
 }

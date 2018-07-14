@@ -31,3 +31,48 @@ security:
       scope: read,write
       # Scopes approved: ALL
       auto-approve-scopes: '.*'
+      
+
+spring:
+   # Database configuration
+   datasource:
+      url: jdbc:h2:file:~/h2/web_db
+      username: admin
+      password: admin
+      driverClassName: org.h2.Driver
+   jpa:
+      hibernate:
+         ddl-auto: update
+      properties:
+         hibernate:
+            dialect: org.hibernate.dialect.H2Dialect
+   # Enable web database access
+   h2:
+      console:
+         enabled: true
+         path: /h2-console
+         
+# Log configuration
+
+# logs the SQL statements
+log4j:
+   logger:
+      org:
+         hibernate:
+            SQL:debug 
+            type:trace
+logging:
+   level:
+      org:
+         springframework:
+            web:DEBUG
+      com:
+         web:
+            oauth2:DEBUG
+
+server.tomcat.accesslog:
+   enabled: true
+   pattern: '%h %l %u %t "%r" %s %b %D'
+
+# debug: true
+# trace: true
