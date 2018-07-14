@@ -1,5 +1,6 @@
 # Web Oauth2
 Project for testing oauth2 features
+![Project image](https://raw.githubusercontent.com/maarkeez/web-oauth2-project/master/doc/snapshot.PNG)
 
 ## Features
 ### Server side
