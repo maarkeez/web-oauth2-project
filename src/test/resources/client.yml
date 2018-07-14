@@ -1,0 +1,15 @@
+# Properties for client-application start-up.(
+server:
+  port: 9999
+  # The context path has to be explicit if you are running both the client and the auth server on localhost
+  # otherwise the cookie paths class and the two apps cannot agree on a session identifier. 
+  context-path: /client
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      access-token-uri: http://localhost:8080/oauth/token
+      user-authorization-uri: http://localhost:8080/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:8080/me
