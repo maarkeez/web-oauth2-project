@@ -24,6 +24,11 @@
 .delimiter {
 	min-height: 44px;
 }
+
+.gray-img {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
 </style>
 
 </head>
@@ -55,6 +60,10 @@
 			</div>
 			<div class="col-sm-1"></div>
 
+			
+
+
+
 			<div class="card col-sm-3">
 				<div class="card-header">Internal login</div>
 				<div class="card-body">
@@ -63,7 +72,7 @@
 					<form action="/admin_login" name="f" method="POST">
 						<div class="group">
 							<label for="username">User name</label>
-							<input id="username" type="text" name="username" required="true" autofocus="autofocus" />
+							<input id="username" type="text" name="username" required="true" />
 							<span class="highlight"></span>
 							<span class="bar"></span>
 						</div>
@@ -78,11 +87,30 @@
 				</div>
 			</div>
 			<div class="col-sm-1"></div>
-
-
-
 		</div>
-		
+		<div class="row delimiter"></div>
+		<div class="row">
+			<!-- LINKEDIN -->
+			<div class="card card-custom col-sm-3" onclick="window.location.href='/login/linkedin'">
+				<div class="card-header">LinkedIn</div>
+				<div class="card-body">
+					<p class="card-text">Login with linkedin.</p>
+					<img class="logo gray-img" src="http://www.iconsalot.com/asset/icons/blackvariant/social-media-icons/512/linkedin-icon.png" />
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+			
+	<!-- 			TWITTER -->
+<!-- 						<div class="card card-custom col-sm-3" onclick="window.location.href='/login/twitter'"> -->
+<!-- 							<div class="card-header">Twitter</div> -->
+<!-- 							<div class="card-body"> -->
+<!-- 								<p class="card-text">Login with twitter.</p> -->
+<!-- 								<img class="logo" src="https://image.freepik.com/free-icon/twitter-logo_318-40209.jpg" /> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-1"></div> -->
+		</div>
+
 	</div>
 	<div class="container" ng-show="home.authenticated">
 		Logged in as:

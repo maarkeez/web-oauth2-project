@@ -85,6 +85,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		List<Filter> filters = new ArrayList<>();
 		filters.add(ssoFilter(facebook(), "/login/facebook"));
 		filters.add(ssoFilter(github(), "/login/github"));
+//		filters.add(ssoFilter(twitter(), "/login/twitter"));
+		filters.add(ssoFilter(linkedin(), "/login/linkedin"));
 		filter.setFilters(filters);
 		return filter;
 	}
@@ -129,6 +131,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	@ConfigurationProperties("facebook")
 	public ClientResources facebook() {
+		return new ClientResources();
+	}
+	
+//	@Bean
+//	@ConfigurationProperties("twitter")
+//	public ClientResources twitter() {
+//		return new ClientResources();
+//	}
+	
+	@Bean
+	@ConfigurationProperties("linkedin")
+	public ClientResources linkedin() {
 		return new ClientResources();
 	}
 }
