@@ -21,5 +21,5 @@ public class UserController {
 		Map<String, String> map = new LinkedHashMap<>();
 		map.put("name", principal.getName());
 		return map;
-	}	
+	}
 }

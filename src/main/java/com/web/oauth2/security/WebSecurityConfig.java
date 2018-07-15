@@ -6,11 +6,13 @@ import java.util.List;
 import javax.servlet.Filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerTokenServicesConfiguration;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -31,6 +33,8 @@ import org.springframework.web.filter.CompositeFilter;
 
 /* To allows this application create all the endpoints needed for serve as oauth2-Server */
 @EnableAuthorizationServer
+
+@Import(value = { ResourceServerTokenServicesConfiguration.class })
 
 /* Set "ResourceServerConfiguration" class filter preference over this one */
 @Order(6)
@@ -60,8 +64,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			/* CRSF Token for session */ 
 		    .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 		    
+		 
+		    
 		    /* Authentication filter */
-		    .and().addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
+		    .and().addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class)
+		    
+		    
+		    ;
 		
 		// @formatter:on;
 	}
@@ -82,9 +91,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private Filter ssoFilter(ClientResources client, String path) {
 		OAuth2ClientAuthenticationProcessingFilter filter = new OAuth2ClientAuthenticationProcessingFilter(path);
+
 		OAuth2RestTemplate template = new OAuth2RestTemplate(client.getClient(), oauth2ClientContext);
 		filter.setRestTemplate(template);
-		filter.setTokenServices(new UserInfoTokenServices(client.getResource().getUserInfoUri(), client.getClient().getClientId()));
+
+		UserInfoTokenServices tokenService = new UserInfoTokenServices(client.getResource().getUserInfoUri(), client.getClient().getClientId());
+		PrincipalExtractorBuilder extractorBuilder = new PrincipalExtractorBuilder();
+		tokenService.setPrincipalExtractor(extractorBuilder.build(client.getResource().getId()));
+
+		filter.setTokenServices(tokenService);
 		return filter;
 	}
 

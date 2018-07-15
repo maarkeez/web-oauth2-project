@@ -30,9 +30,8 @@ public class WebSecurityConfigFormLogin extends WebSecurityConfigurerAdapter {
 			.loginProcessingUrl("/admin_login")
 			.failureUrl("/#?error=loginError")
 			.defaultSuccessUrl("/")
-			.and()
-
-			.csrf().disable();
+			
+			.and().csrf().disable();
 		// @formatter:on
 
 	}
@@ -52,4 +51,6 @@ public class WebSecurityConfigFormLogin extends WebSecurityConfigurerAdapter {
 		auth.eraseCredentials(false);
 	}
 
+	
+	
 }
